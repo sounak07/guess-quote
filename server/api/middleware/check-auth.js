@@ -1,7 +1,7 @@
 // TODO
 var {User} = require("./../models/user");
 
-var authenticate = (req, res, next) => {
+module.exports = (req, res, next) => {
   // Token verification middleware
   var token = req.header("x-auth");
 
@@ -16,6 +16,4 @@ var authenticate = (req, res, next) => {
   }).catch((e)=>{
     res.status(401).send();
   });
-};
-
-module.exports = {authenticate};
+}
