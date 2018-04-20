@@ -5,7 +5,7 @@ const _ = require("lodash");
 const bcrypt = require("bcryptjs");
 
 
-var UserSchema = mongoose.Schema({
+const UserSchema = mongoose.Schema({
   email:{
     type:String,
     required:true,
@@ -71,7 +71,7 @@ UserSchema.statics.findByToken = function(token){
 };
 
 UserSchema.pre("save",function(next){
-  var user = this;
+  const user = this;
 
   if(user.isModified('password')){
     bcrypt.genSalt(10,(err, salt)=>{
@@ -81,10 +81,10 @@ UserSchema.pre("save",function(next){
       });
     });
   } else {
-    next();
+    return next();
   }
 });
 
-var User = mongoose.model("User",UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 module.exports = {User};
