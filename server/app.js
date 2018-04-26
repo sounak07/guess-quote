@@ -6,10 +6,12 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-const userRoutes = require("./api/routes/user");
+
+const routes = require('./api/routes/')
+
 
 // connect to local mongoDB
-mongoose.connect("mongodb://localhost:27017/guess-quote");
+mongoose.connect(process.env.DB_URL);
 mongoose.Promise = global.Promise;
 
 app.use(cors());
@@ -18,7 +20,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // routes
-app.use("/user", userRoutes);
+
+app.use('/', routes)
 
 // error handling
 app.use((req, res, next) => {
