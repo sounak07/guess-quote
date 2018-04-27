@@ -6,9 +6,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-
-const routes = require('./api/routes/')
-
+const routes = require("./api/routes/");
 
 // connect to local mongoDB
 mongoose.connect(process.env.DB_URL);
@@ -21,7 +19,7 @@ app.use(bodyParser.json());
 
 // routes
 
-app.use('/', routes)
+app.use("/", routes);
 
 // error handling
 app.use((req, res, next) => {
